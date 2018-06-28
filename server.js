@@ -9,6 +9,7 @@ const
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
 	passport = require('passport'),
+	passportConfig = require('./config/passport.js')
 	usersRouter = require('./routes/users.js')
 
 // environment port
@@ -36,6 +37,24 @@ app.use(flash()) // set and reset flash messages
 // ejs configuration
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+
+app.use(session({
+	secret: "You are God",
+	cookie: { maxAge: 60000000 },
+	resave: true,
+	saveUninitialized: false,
+	store: store
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+//make current user available in every view
+app.use((req, res, next) => {
+	app.locals.currentUser = req.user
+	app.locals.loggedIn = !!req.user
+	next()
+})
 
 //root route
 app.get('/', (req,res) => {
