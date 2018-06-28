@@ -8,6 +8,10 @@
 	</div>
 </div>
 
+<% if (message.length > 0) { %>
+  <div class="alert alert-success"><%= message %></div>
+<% } %>
+
 <h2>Recent Posts</h2>
 <div class="card" style="margin-bottom: 2rem">
   <div class="card-body">

@@ -13,6 +13,7 @@
 <body>
 	<% if(loggedIn) { %>
 		<span>Logged in as: </span> <%= currentUser.name %>
+		<a href="/users/profile/edit">Edit</a>
 		<% } else { %>
 			<a href="/users/login">Log In</a>
 			<a href="/users/signup">Sign Up</a>

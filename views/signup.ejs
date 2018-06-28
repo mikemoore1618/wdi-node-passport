@@ -1,5 +1,9 @@
 <div class="col-sm-6 offset-md-3">
-	<h1>Sign Up</h1>
+  <h1>Sign Up</h1>
+  <!-- render flash message if there is one: -->
+  <% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+<% } %>
 	<form method="post" action="/users/signup">
     <div class="form-group">
       <label for="name">Name</label>

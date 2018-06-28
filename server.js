@@ -9,7 +9,8 @@ const
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
 	passport = require('passport'),
-	passportConfig = require('./config/passport.js')
+	passportConfig = require('./config/passport.js'),
+	methodOverride = require('method-override'),
 	usersRouter = require('./routes/users.js')
 
 // environment port
@@ -33,6 +34,7 @@ app.use(logger('dev')) // log incoming requests to terminal
 app.use(cookieParser()) // interpret cookies that are attached to requests
 app.use(express.urlencoded({extended: true})) // interpret standard form data in requests
 app.use(flash()) // set and reset flash messages
+app.use(methodOverride('_method'))//This middleware allows us to override an incoming request's method by specifying a _method query param
 
 // ejs configuration
 app.set('view engine', 'ejs')

@@ -1,5 +1,11 @@
 <div class="col-sm-6 offset-md-3">
   <h1>Log In</h1>
+  
+   <!-- render flash message if there is one: -->
+   <% if (message.length > 0) { %>
+    <div class="alert alert-danger"><%= message %></div>
+<% } %>
+
   <form method="post" action="/users/login">
     <div class="form-group">
       <label for="email">Email</label>
